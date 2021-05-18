@@ -14,8 +14,8 @@
                 </thead>
                 <tbody>
                     <tr class="row-heard-table" v-for="grupo in grupos">
-                    <td>{{grupo.nome}}</td>
-                    <td>{{grupo.qtTotalUser}}</td>
+                        <td>{{grupo.nome}}</td>
+                        <td>{{grupo.qtTotalUser}}</td>
                     </tr>
                 </tbody>
             </table>

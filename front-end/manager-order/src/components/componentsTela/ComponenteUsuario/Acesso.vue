@@ -44,13 +44,13 @@ export default {
             UsuarioService.login(email, senha).then(resposta => {
                 
                 if(resposta.data != ""){
+                    this.usuario.id = resposta.data.id;
                     this.usuario.nome = resposta.data.nome;
                     this.usuario.email = resposta.data.email;
                     this.usuario.cpf = resposta.data.cpf;
-                    this.usuario.senha = resposta.data.senha;
-                    
+                    console.log(this.usuario);
                     this.statusLogin = true;
-                    this.$router.push("/dashboard");
+                    this.$router.push("/dashboard/"+this.usuario.id);
                 }
 
                 if(!this.statusLogin){

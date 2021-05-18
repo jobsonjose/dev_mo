@@ -2,7 +2,9 @@ package com.manager.order.managerorder.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -20,15 +22,13 @@ public class Usuario extends AbstractEntity{
 	private String senha;
 	
 	@ManyToOne
+	@JoinColumn(name = "grupo_id")
 	private Grupo grupo;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private List<Produto> produtos;
 	
-	@OneToMany
-	private List<Categoria> categorias;
-	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private List<Pedido> pedidos;
 	
 	public List<Pedido> getUsuarios() {
@@ -39,12 +39,6 @@ public class Usuario extends AbstractEntity{
 	}
 	public List<Produto> getProdutos() {
 		return produtos;
-	}
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
 	}
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;

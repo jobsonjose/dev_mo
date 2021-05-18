@@ -1,10 +1,11 @@
 <template>
-    <div class="container-nave">
+    <div class="container-nave-dbh">
         <div class="row">
-          <div v-on:click="produtos()" class="title-nave">Produtos</div>
-          <div v-on:click="estoques()" class="title-nave">Estoques</div>
-          <div v-on:click="categorias()" class="title-nave">Categorias</div>
-          <div v-on:click="relatorios()" class="title-nave">Relatorios</div>
+          <div v-on:click="produtos()" class="title-nave-dbh">Produtos</div>
+          <div v-on:click="estoques()" class="title-nave-dbh">Estoques</div>
+          <div v-on:click="categorias()" class="title-nave-dbh">Categorias</div>
+          <div v-on:click="relatorios()" class="title-nave-dbh">Relatorios</div>
+          <div v-on:click="sair()" class="title-nave-dbh">Sair</div>
         </div>
     </div>
 </template>
@@ -16,32 +17,40 @@ export default {
             msg: 'Page do meetup Eduta'
         }
     },
+    props:{
+        idUsuario: Number
+    },
     methods: {
-        produto(){},
+        produtos(){
+            this.$router.push("/dashboard/produto/"+this.idUsuario);
+        },
         estoques(){},
         categorias(){},
-        relatorios(){}
+        relatorios(){},
+        sair(){
+            this.$router.push("/")
+        }
     }
 }
 </script>
-<style>
+<style scoped>
 .row{
     float: left;
     width: 100%;
 }
-.title-nave{
+.title-nave-dbh{
     float: left;
-    padding: 0.5% 9%;
+    padding: 0.5% 7.5%;
     color: white;
     transition: 1s;
 }
-.container-nave{
+.container-nave-dbh{
     width: 100%;
     float: left;
     padding-top: 8%;
     background: #4c1c26;
 }
-.title-nave:hover{
+.title-nave-dbh:hover{
   color: rgba(247, 223, 106, 0.77);
 
 }

@@ -33,8 +33,6 @@ public class PedidoService {
 	public Pedido save(Pedido pedido, Long idUsuario, Long idProduto) {
 		Usuario usuario = usuarioDAO.findById(idUsuario).get();
 		Produto produto = produtoDAO.findById(idProduto).get();
-		produto.getPedidos().add(pedido);
-		pedido.getProduto().add(produto);
 		
 		pedido.setUsuario(usuario);
 		
@@ -46,8 +44,6 @@ public class PedidoService {
 		Produto produto = produtoDAO.findById(idProduto).get();
 		Pedido ped = pedidoDAO.findById(idPedido).get();
 		
-		produto.getPedidos().add(ped);
-		ped.getProduto().add(produto);
 		
 		ped.setUsuario(usuario);
 		ped.setDataEntrega(pedido.getDataEntrega());

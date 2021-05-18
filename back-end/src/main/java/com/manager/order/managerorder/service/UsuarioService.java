@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.manager.order.managerorder.dto.UsuarioDTO;
 import com.manager.order.managerorder.model.Grupo;
 import com.manager.order.managerorder.model.Usuario;
 import com.manager.order.managerorder.repository.GrupoRepository;
@@ -39,10 +40,16 @@ public class UsuarioService {
 		return usuarioDAO.save(usu);
 	}
 	
-	public Usuario login(String email, String senha) {
+	public UsuarioDTO login(String email, String senha) {
 		Usuario usu = usuarioDAO.login(email, senha);
+		UsuarioDTO usuDTO = new UsuarioDTO();
+		usuDTO.setId(usu.getId());
+		usuDTO.setNome(usu.getNome());
+		usuDTO.setCpf(usu.getCpf());
+		usuDTO.setEmail(usu.getEmail());
+		usuDTO.setIdGrupo(usu.getGrupo().getId());
 		
-		return usu;
+		return usuDTO;
 	}
 	
 	public Iterable<Usuario> findAll(){

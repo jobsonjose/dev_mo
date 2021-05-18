@@ -10,6 +10,15 @@ export default {
   name: 'App',
   components: {
   },
+  data: () => ({
+    usuarioCurrent: {
+        id: 0,
+        nome: "",
+        cpf: "",
+        email: "",
+        senha: ""
+    },
+  }),
   mounted() {
       console.log(this.statusLogin);
   }

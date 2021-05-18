@@ -2,6 +2,7 @@ package com.manager.order.managerorder.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -15,10 +16,10 @@ public class Grupo extends AbstractEntity{
 	private String nome;
 	private int qtTotalUser;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
 	private List<Usuario> usuarios;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
 	private List<Estoque> estoques;
 	
 	public int getQtTotalUser() {

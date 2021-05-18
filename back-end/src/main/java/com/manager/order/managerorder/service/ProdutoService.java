@@ -1,8 +1,12 @@
 package com.manager.order.managerorder.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.manager.order.managerorder.dto.ProdutoDTO;
 import com.manager.order.managerorder.model.Categoria;
 import com.manager.order.managerorder.model.Estoque;
 import com.manager.order.managerorder.model.Produto;
@@ -55,11 +59,44 @@ public class ProdutoService {
 		return produtoDAO.save(prod);
 	}
 	
-	public Produto findById(Long id) {
-		return produtoDAO.findById(id).get();
+	public ProdutoDTO findById(Long id) {
+		Produto prod = produtoDAO.findById(id).get();
+		ProdutoDTO prodDTO = new ProdutoDTO();
+		prodDTO.setId(prod.getId());
+		prodDTO.setNome(prod.getNome());
+		prodDTO.setDescricao(prod.getDescricao());
+		prodDTO.setValor(prod.getValor());
+		prodDTO.setQuantidade(prod.getQuantidade());
+		prodDTO.setIdUsuario(prod.getUsuario().getId());
+		prodDTO.setIdCategoria(prod.getCategoria().getId());
+		prodDTO.setIdEstoque(prod.getEstoque().getId());
+		
+		return prodDTO;
 	}
 	
-	public Iterable<Produto> findAll(){
-		return produtoDAO.findAll();
+	public List<ProdutoDTO> findAll(){
+		Iterable<Produto> listProduto = produtoDAO.findAll();
+		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
+		
+		for(Produto prod : listProduto) {
+			ProdutoDTO prodDTO = new ProdutoDTO();
+			prodDTO.setId(prod.getId());
+			prodDTO.setNome(prod.getNome());
+			prodDTO.setDescricao(prod.getDescricao());
+			prodDTO.setValor(prod.getValor());
+			prodDTO.setIdUsuario(prod.getUsuario().getId());
+			prodDTO.setIdCategoria(prod.getCategoria().getId());
+			prodDTO.setIdEstoque(prod.getEstoque().getId());
+			
+			listProdutoDTO.add(prodDTO);
+		}
+		return listProdutoDTO;
+	}
+	
+	public Produto delete(Long id) {
+		Produto produto = produtoDAO.findById(id).get();
+		produtoDAO.delete(produto);
+		
+		return produto;
 	}
 }

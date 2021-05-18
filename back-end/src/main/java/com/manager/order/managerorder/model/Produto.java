@@ -1,13 +1,16 @@
 package com.manager.order.managerorder.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,23 +28,23 @@ public class Produto extends AbstractEntity{
 	private int quantidade;
 	
 	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	
 	@ManyToOne
+	@JoinColumn(name = "estoque_id")
 	private Estoque estoque;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "produto")
-	private Set<Pedido> pedidos = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+	private List<PedidoProduto> pedidoProduto;
 	
-	public Set<Pedido> getPedidos() {
-		return pedidos;
-	}
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+	private List<EstoqueProduto> estoqueProduto;
+	
 	public Estoque getEstoque() {
 		return estoque;
 	}
@@ -77,6 +80,12 @@ public class Produto extends AbstractEntity{
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 	 
 }

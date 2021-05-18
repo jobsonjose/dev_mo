@@ -25,9 +25,9 @@ public class CategoriaController {
 		return new ResponseEntity(service.findAll(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{idUsuario}", method=RequestMethod.POST)
-	public ResponseEntity<?> save(@RequestBody Categoria categoria, @PathVariable("idUsuario") Long idUsuario){
-		return new ResponseEntity<>(service.save(categoria, idUsuario), HttpStatus.OK);
+	@RequestMapping(value = "/", method=RequestMethod.POST)
+	public ResponseEntity<?> save(@RequestBody Categoria categoria){
+		return new ResponseEntity<>(service.save(categoria), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/update/{idCategoria}/{idUsuario}", method=RequestMethod.POST)

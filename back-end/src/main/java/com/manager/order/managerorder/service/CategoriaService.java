@@ -25,20 +25,15 @@ public class CategoriaService {
 		return categoriaDAO.findById(id).get();
 	}
 	
-	public Categoria save(Categoria categoria, Long idUsuario) {
-		Usuario usuario = usuarioDAO.findById(idUsuario).get();
-		categoria.setUsuario(usuario);
-		
+	public Categoria save(Categoria categoria) {
 		return categoriaDAO.save(categoria);
 	}
 	
 	public Categoria update(Categoria categoria, Long idCategoria, Long idUsuario) {
-		Usuario usuario = usuarioDAO.findById(idUsuario).get();
 		Categoria categ = categoriaDAO.findById(idCategoria).get();
 		
 		categ.setNome(categoria.getNome());
 		categ.setDescricao(categoria.getDescricao());
-		categ.setUsuario(usuario);
 		
 		return categoriaDAO.save(categ);
 	}

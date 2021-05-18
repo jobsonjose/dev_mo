@@ -6,6 +6,9 @@ import Assinatura from '@/pages/Assinatura'
 import Grupo from '@/pages/Grupo'
 import Beneficio from '@/pages/Beneficio'
 import Dashboard from '@/pages/Dashboard'
+import Produto from '@/pages/Produto/Produto'
+import CProduto from '@/pages/Produto/CProduto'
+import EProduto from '@/pages/Produto/EProduto'
 
 Vue.use(Router)
 
@@ -37,9 +40,24 @@ export default new Router({
       component: Beneficio
     },
     {
-      path: '/dashboard',
+      path: '/dashboard/:idUsuario',
       name: 'Dashboard',
       component: Dashboard
+    },
+    {
+      path: '/dashboard/produto/:idUsuario',
+      name: 'Produto',
+      component: Produto
+    },
+    {
+      path: '/dashboard/produto/eproduto/:idProduto',
+      name: 'EProduto',
+      component: EProduto
+    },
+    {
+      path: '/dashboard/produto/cproduto/:idUsuario',
+      name: 'CProduto',
+      component: CProduto
     }
   ]
 })

@@ -23,7 +23,7 @@
                 </div>
                 <div class="row-form">
                     <select v-model="grupoSelected">
-                        <option v-for="grupo in grupos" v-bind:value="grupo.id">
+                        <option v-for="grupo in grupos" v-bind:key="grupo.id" v-bind:value="grupo.id">
                             {{ grupo.nome }}
                         </option>
                     </select>

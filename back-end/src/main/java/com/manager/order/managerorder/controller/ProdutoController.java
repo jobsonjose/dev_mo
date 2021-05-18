@@ -43,4 +43,9 @@ public class ProdutoController {
 	public ResponseEntity<?> findById(@PathVariable("id") Long id){
 		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Long id){
+		return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+	}
 }
