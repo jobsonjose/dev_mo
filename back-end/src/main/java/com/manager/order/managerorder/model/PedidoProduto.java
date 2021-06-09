@@ -33,4 +33,20 @@ public class PedidoProduto extends AbstractEntity{
 		this.quantidade = quantidade;
 	}
 	
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	
+	public Produto getProduto() {
+		return this.produto;
+	}
+	
+	public Pedido getPedido() {
+		return this.pedido;
+	}
+	
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	
 }

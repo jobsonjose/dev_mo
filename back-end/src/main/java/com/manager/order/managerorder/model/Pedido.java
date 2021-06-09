@@ -45,6 +45,10 @@ public class Pedido extends AbstractEntity{
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
+	@ManyToOne
+	@JoinColumn(name = "estoque_id")
+	private Estoque estoque;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private List<PedidoProduto> pedidoproduto;
 	
@@ -71,5 +75,15 @@ public class Pedido extends AbstractEntity{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getTipoPedido() {
+		return tipoPedido;
+	}
+	public void setTipoPedido(String tipoPedido) {
+		this.tipoPedido = tipoPedido;
+	}
+	
+	public Estoque getEstoque() {
+		return this.estoque;
 	}
 }

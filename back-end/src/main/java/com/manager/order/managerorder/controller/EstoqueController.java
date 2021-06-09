@@ -26,9 +26,14 @@ public class EstoqueController {
 		return new ResponseEntity(service.findAll(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{idGrupo}", method=RequestMethod.POST)
-	public ResponseEntity<?> save(@RequestBody Estoque estoque, @PathVariable("idGrupo") Long idGrupo){
-		return new ResponseEntity<>(service.save(estoque, idGrupo), HttpStatus.OK);
+	@GetMapping(path = "/listgroup/{idUsuario}")
+	public ResponseEntity<?> findAllGroup(@PathVariable("idUsuario") Long idUsuario){
+		return new ResponseEntity<>(service.findAll(idUsuario), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/save/{idUsuario}", method=RequestMethod.POST)
+	public ResponseEntity<?> save(@RequestBody Estoque estoque, @PathVariable("idUsuario") Long idUsuario){
+		return new ResponseEntity<>(service.save(estoque, idUsuario), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/update/{idEstoque}/{idGrupo}", method=RequestMethod.POST)
@@ -40,5 +45,15 @@ public class EstoqueController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> findId(@PathVariable("id") Long id){
 		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Long id){
+		return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/estoqueproduto/{id}")
+	public ResponseEntity<?> findAllEP(@PathVariable("id") Long id){
+		return new ResponseEntity<>(service.findEstoqueWithProduto(id), HttpStatus.OK);
 	}
 }

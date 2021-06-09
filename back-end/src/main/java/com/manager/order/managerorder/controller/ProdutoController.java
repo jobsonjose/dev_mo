@@ -44,6 +44,11 @@ public class ProdutoController {
 		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/list/{id}")
+	public ResponseEntity<?> findAllProdutoEstoque(@PathVariable("id") Long id){
+		return new ResponseEntity<>(service.findAllList(id), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id){
 		return new ResponseEntity<>(service.delete(id), HttpStatus.OK);

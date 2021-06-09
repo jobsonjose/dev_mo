@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manager.order.managerorder.dto.ProdutoDTO;
+import com.manager.order.managerorder.dto.ProdutoListDTO;
 import com.manager.order.managerorder.model.Categoria;
 import com.manager.order.managerorder.model.Estoque;
+import com.manager.order.managerorder.model.EstoqueProduto;
 import com.manager.order.managerorder.model.Produto;
 import com.manager.order.managerorder.model.Usuario;
 import com.manager.order.managerorder.repository.CategoriaRepository;
+import com.manager.order.managerorder.repository.EstoqueProdutoRepository;
 import com.manager.order.managerorder.repository.EstoqueRepository;
 import com.manager.order.managerorder.repository.ProdutoRepository;
 import com.manager.order.managerorder.repository.UsuarioRepository;
@@ -24,6 +27,9 @@ public class ProdutoService {
 	
 	@Autowired
 	private EstoqueRepository estoqueDAO;
+	
+	@Autowired
+	private EstoqueProdutoRepository estoqueProdutoDAO;
 	
 	@Autowired
 	private CategoriaRepository categoriaDAO;
@@ -39,6 +45,13 @@ public class ProdutoService {
 		produto.setCategoria(categoria);
 		produto.setEstoque(estoque);
 		produto.setUsuario(usuario);
+		
+		EstoqueProduto estoqueProduto = new EstoqueProduto();
+		estoqueProduto.setProduto(produto);
+		estoqueProduto.setEstoque(estoque);
+		estoqueProduto.setQuantidade(produto.getQuantidade());
+		
+		estoqueProdutoDAO.save(estoqueProduto);
 		
 		return produtoDAO.save(produto);
 	}
@@ -74,6 +87,20 @@ public class ProdutoService {
 		return prodDTO;
 	}
 	
+	public List<ProdutoListDTO> findAllList(Long idEstoque){
+		List<Produto> listProduto = produtoDAO.findAllProduto(idEstoque);
+		List<ProdutoListDTO> listProdutoDTO = new ArrayList<ProdutoListDTO>();
+		for(Produto prod : listProduto) {
+			ProdutoListDTO plDTO = new ProdutoListDTO();
+			plDTO.setIdproduto(prod.getId());
+			plDTO.setNome(prod.getNome());
+			
+			listProdutoDTO.add(plDTO);
+		}
+		
+		return listProdutoDTO;
+	}
+	
 	public List<ProdutoDTO> findAll(){
 		Iterable<Produto> listProduto = produtoDAO.findAll();
 		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
@@ -95,6 +122,9 @@ public class ProdutoService {
 	
 	public Produto delete(Long id) {
 		Produto produto = produtoDAO.findById(id).get();
+		EstoqueProduto ep = estoqueProdutoDAO.findByIdProduct(produto.getId());
+		
+		estoqueProdutoDAO.delete(ep);
 		produtoDAO.delete(produto);
 		
 		return produto;

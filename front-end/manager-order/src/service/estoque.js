@@ -7,10 +7,18 @@ export default {
     },
 
     listarUsuario:(idUsuario) => {
-        return http.get('estoque/' + idUsuario)
+        return http.get('estoque/listgroup/' + idUsuario)
     },
 
-    save:(form) =>{
-        return http.post('estoque/', form)
+    save:(form, idUsuario) => {
+        return http.post('estoque/save/' + idUsuario, form)
     },
+
+    listarEstoqueProduto:(idEstoque) => {
+        return http.get('estoque/estoqueproduto/' + idEstoque);
+    },
+
+    delete:(idEstoque) => {
+        return http.get('estoque/delete/' + idEstoque)
+    }
 }

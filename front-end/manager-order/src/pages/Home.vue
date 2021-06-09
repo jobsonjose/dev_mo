@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-tv">
     <header-sub-nave></header-sub-nave>
     <header-nave></header-nave>
     <banner-home></banner-home>

@@ -1,6 +1,6 @@
 <template>
   <div class="container-nave">
-      <div class="row">
+      <div class="row-tv">
           <div v-on:click="principal()" class="title-nave">Logo-Principal</div>
           <div v-on:click="assinatura()" class="title-nave">Assinaturas</div>
           <div v-on:click="grupo()" class="title-nave">Grupos</div>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.row{
+.row-tv{
     float: left;
     width: 100%;
 }

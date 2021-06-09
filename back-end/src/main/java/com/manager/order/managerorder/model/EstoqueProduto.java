@@ -40,5 +40,19 @@ public class EstoqueProduto extends AbstractEntity{
 		this.quantidade = quantidade;
 	}
 	
+	public Estoque getEstoque() {
+		return this.estoque;
+	}
 	
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+	
+	public Produto getProduto() {
+		return this.produto;
+	}
+	
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 }

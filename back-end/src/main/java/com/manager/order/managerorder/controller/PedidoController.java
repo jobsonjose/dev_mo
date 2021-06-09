@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.manager.order.managerorder.dto.PedidoIntoDTO;
 import com.manager.order.managerorder.model.Grupo;
 import com.manager.order.managerorder.model.Pedido;
 import com.manager.order.managerorder.service.PedidoService;
@@ -27,10 +28,9 @@ public class PedidoController {
 		return new ResponseEntity(service.findAll(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{idUsuario}/{idProduto}", method=RequestMethod.POST)
-	public ResponseEntity<?> save(@RequestBody Pedido pedido, @PathVariable("idUsuario") Long idUsuario,
-			@PathVariable("idProduto") Long idProduto){
-		return new ResponseEntity<>(service.save(pedido, idUsuario, idProduto), HttpStatus.OK);
+	@RequestMapping(value = "/{idUsuario}", method=RequestMethod.POST)
+	public ResponseEntity<?> save(@RequestBody PedidoIntoDTO pedido, @PathVariable("idUsuario") Long idUsuario){
+		return new ResponseEntity<>(service.save(pedido, idUsuario), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/update/{idPedido}/{idUsuario}/{idProduto}", method=RequestMethod.POST)
@@ -39,8 +39,8 @@ public class PedidoController {
 		return new ResponseEntity<>(service.update(pedido, idPedido, idUsuario, idProduto), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findId(@PathVariable("id") Long id){
-		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+	@GetMapping(value = "/list/{idUsuario}")
+	public ResponseEntity<?> listProdutoPedido(@PathVariable("idUsuario") Long id){
+		return new ResponseEntity<>(service.listProdutoPedido(id), HttpStatus.OK);
 	}
 }

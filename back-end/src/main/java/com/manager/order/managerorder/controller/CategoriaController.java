@@ -30,14 +30,18 @@ public class CategoriaController {
 		return new ResponseEntity<>(service.save(categoria), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/update/{idCategoria}/{idUsuario}", method=RequestMethod.POST)
-	public ResponseEntity<?> update(@RequestBody Categoria categoria, @PathVariable("idCategoria") Long idCategoria,
-			@PathVariable("idUsuario") Long idUsuario){
-		return new ResponseEntity<>(service.update(categoria, idCategoria, idUsuario), HttpStatus.OK);
+	@RequestMapping(value = "/update/{idCategoria}", method=RequestMethod.POST)
+	public ResponseEntity<?> update(@RequestBody Categoria categoria, @PathVariable("idCategoria") Long idCategoria){
+		return new ResponseEntity<>(service.update(categoria, idCategoria), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> findById(@PathVariable("id") Long id){
 		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Long id){
+		return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
 	}
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container-sub-nav">
-        <div class="row">
+        <div class="row-tv">
           <div v-on:click="acessoTela()" class="title-sub-nave">Acessar</div>
       </div>
     </div>
@@ -29,7 +29,7 @@ export default {
     width: 100%;
     background: whitesmoke;
 }
-.row{
+.row-tv{
     float: right;
     width: 30%;
 }

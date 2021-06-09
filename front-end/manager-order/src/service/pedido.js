@@ -6,11 +6,15 @@ export default {
         return http.get('pedido/')
     },
 
-    save:(form) =>{
-        return http.post('pedido/', form)
+    save:(form, idUsuario) =>{
+        return http.post('pedido/' + idUsuario, form)
     },
 
     filter:(form) =>{
         return http.post('pedido/filter/', form)
+    },
+
+    listarPedidoProduto:(idUsuario) => {
+        return http.get('pedido/list/' + idUsuario);
     }
 }
